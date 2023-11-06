@@ -1,22 +1,7 @@
 import numpy as np
 from math import sqrt
-
-
-def __error_catcher(predicted, real):
-        
-    if len(predicted.shape) != len(real.shape) != 1:
-        raise Exception("разные размерности")
-            
-    if predicted.shape != real.shape:
-        raise Exception("разные размерности")
-            
-    if predicted.shape == 0:
-        raise Exception("нулевая размерность")
-        
-    
+   
 def mean_abs_err(real: np.ndarray, predicted: np.ndarray) -> float:
-
-   __error_catcher(predicted, real)
 
    m = predicted.shape[0]
    sum = 0
@@ -32,8 +17,6 @@ def mean_abs_err(real: np.ndarray, predicted: np.ndarray) -> float:
 
 
 def mean_squared_err(real: np.ndarray, predicted: np.ndarray) -> float:
-    
-    __error_catcher(predicted, real)
     
     m = predicted.shape[0]
     sum = 0
@@ -57,8 +40,6 @@ def root_mse(real: np.ndarray, predicted: np.ndarray) -> float:
 
 def mean_abs_perc_err(real: np.ndarray, predicted: np.ndarray) -> float:
     
-    __error_catcher(predicted, real)
-    
     m = predicted.shape[0]
     sum = 0
     
@@ -75,8 +56,6 @@ def mean_abs_perc_err(real: np.ndarray, predicted: np.ndarray) -> float:
     
 
 def r_squared(real: np.ndarray, predicted: np.ndarray) -> float:
-    
-    __error_catcher(predicted, real)
     
     m = predicted.shape[0]
     sum = 0
