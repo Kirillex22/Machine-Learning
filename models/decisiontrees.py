@@ -10,20 +10,19 @@ class MyDecisionTree:
         self.current_depth = 0
         
         if metric == 'gini':
-            self.metric = self.gini
+            self.metric, self.leaf = self.gini, lambda y: mode(y)[0]
         elif metric == 'mse':
-            self.metric = self.mse
+            self.metric, self.leaf = self.mse, lambda y: np.mean(y)
             
                     
     def fit(self, X, y):
         self.X, self.y = X, y
         self.model = self.tree(X, y)
-        print(self.model)
-        
+        print(self.model)     
             
     def tree(self, X, y):
         if(self.current_depth >= self.max_depth)|(self.X.shape[0] <= self.min_samples_split):
-            return {'predict': mode(y)[0]}          
+            return {'predict': self.leaf(y)}          
 
         optimal_split = self.splitter() 
         self.current_depth += 1
