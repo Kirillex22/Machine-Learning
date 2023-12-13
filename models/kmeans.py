@@ -19,7 +19,7 @@ class Kmeans:
             last_predict = self.predict
             self.update_predicts(X)
             
-            if ((last_predict == self.predict).any()):
+            if np.all(last_predict == self.predict):
                 break
                 
             last_centers = self.centers
