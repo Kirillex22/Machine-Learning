@@ -1,13 +1,13 @@
 import numpy as np
 
 class MLP:  
-     def __init__(self, *args, loss = 'mse', epochs):
+     def __init__(self, *args, layers, loss = 'mse', epochs):
         self.epochs = epochs
-        
-        if loss == 'gini':
-            self.metric = self.gini
-        elif loss == 'mse':
-            self.metric = self.mse
+        self.layers = layers     
+        #if loss == 'classification':
+            #self.metric = self.gini
+        #elif loss == 'mse':
+            #self.metric = self.mse
 
     def sig(self, x):
          return 1/(1 + np.exp(-x))
@@ -28,27 +28,17 @@ class MLP:
         return 1 if relu(x) > 0 else 0
         
 
-    def f_prop(self, i, input):
-        self.layers[i].activate()
-        self.f_prop(i+1)
+    def f_prop(self):
+        for i in range(len(self.layers) - 1):
+            output = 
         
         
             
-            
-            
-
-    def fill(self, layers):
-        #self.input = layers[0]
-        #self.hiddens = layers[1:len(layers) - 1]
-        #self.output = layers[len(layers) - 1]   
-        self.layers = layers
-        
-
+               
 
     def fit(self, X, y):
         self.X = X
         self.y = y
-        self.layers[0].
         
         for i in range(self.epochs):
             
@@ -56,20 +46,25 @@ class MLP:
 
             
 class Layer:
-    def __init__(self, *args, num_neurons, func, next_layer_dimencity):
+    def __init__(self, *args, num_neurons, func, next_layer_dim):
         self.num_neurons = num_neurons
         self.func = func
         self.neurons = np.empty(num_neurons)
         for i in range(num_neurons):
-            self.neurons[i] = Neuron(next_layer_dimencity)
+            self.neurons[i] = Neuron(next_layer_dim, 1)
 
     def activate(self):
-        self.activated_w = self.func(self.weights)
+        self.values = self.func(np.array([neuron.v for neuron.v in self.neurons]))
+
+    def podumat(self):
+        self.activate()
+        return np.array[self.values[i]*self.neurons[i].axons_weights for i in range(self.values)]    
 
 class Neuron:
-    def __init__(self, num_axons):
+    def __init__(self, num_axons, v):
+        self.v = v
         self.num_axons = num_axons
-        self.weights = np.empty(num_axons)
+        self.axons_weights = np.empty(num_axons)
         
 
         
