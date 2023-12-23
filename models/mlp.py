@@ -26,6 +26,9 @@ class MLP:
 
     def drelu(self, x):
         return 1 if relu(x) > 0 else 0
+
+    def dw(self, x):
+        
         
 
     def f_prop(self):
@@ -46,25 +49,11 @@ class MLP:
 
             
 class Layer:
-    def __init__(self, *args, num_neurons, func, next_layer_dim):
+    def __init__(self, *args, num_neurons, activation):
         self.num_neurons = num_neurons
-        self.func = func
-        self.neurons = np.empty(num_neurons)
-        for i in range(num_neurons):
-            self.neurons[i] = Neuron(next_layer_dim, 1)
+        self.activation = activation
 
-    def activate(self):
-        self.values = self.func(np.array([neuron.v for neuron.v in self.neurons]))
 
-    def podumat(self):
-        self.activate()
-        return np.array[self.values[i]*self.neurons[i].axons_weights for i in range(self.values)]    
-
-class Neuron:
-    def __init__(self, num_axons, v):
-        self.v = v
-        self.num_axons = num_axons
-        self.axons_weights = np.empty(num_axons)
         
 
         
