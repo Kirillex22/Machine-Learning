@@ -25,8 +25,8 @@ class Kmeans:
             last_centers = self.centers
             self.update_centers(X)
 
-            #if (np.mean((last_centers - self.centers)**2) < eps):
-                #break        
+            if (np.mean((last_centers - self.centers)**2) < eps):
+                break        
 
 
     def update_predicts(self, X):
